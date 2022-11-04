@@ -1,0 +1,20 @@
+extends layout
+block content
+  h1= title
+    -let rand  =[{countries:"United Kingdom",state :"England",ranking:5},{countries:"Germany",state:"Hessen",ranking:10},{countries:"france",state:"Paris",ranking:15}]
+  div(class="container-fluid")
+  div(class="row")
+
+    each Europe,index in rand
+            table(style='width:100%')
+                tr
+                    div(class="col-sm-2" onclick=`buy(${index})`) #{Europe.countries}
+                    div(class="col-sm-2" onclick=`buy(${index})`) #{Europe.state}
+                    div(class="col-sm-2" onclick=`buy(${index})`) #{Europe.ranking}
+
+    script.
+     
+      function buy(itemNo)
+      {
+        alert(`Places to visit ${itemNo+1}`)
+      }
