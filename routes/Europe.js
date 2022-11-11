@@ -8,8 +8,11 @@ var router = express.Router();
 //     res.render('Europe',{title:'Search Results Europe'});
 // });
 
+
 /* GET costumes */ 
 router.get('/', Europe_controlers.Europe_view_all_Page ); 
+// GET request for one costume. 
+router.get('/Europes/:id', Europe_controlers.Europe_detail); 
 
 module.exports = router;
 
