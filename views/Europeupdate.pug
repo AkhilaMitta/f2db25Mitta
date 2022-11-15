@@ -1,0 +1,43 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let Europeid = toShow._id 
+  - let countries = toShow.countries 
+  - let state = toShow.state
+  - let ranking = toShow.ranking
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{Europeid} 
+  - let actionid = "/resource/Europes/" + Europeid 
+  form(id='EuropeForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.EuropeAttr(for='countries') Europe countries 
+        input#countries(type='text', name='countries', value= countries ) 
+    div.form-group 
+        label.EuropeAttr(for='state') Europe state
+        input#state(type='text', name='state', value=state ) 
+    div.form-group 
+        label.EuropeAttr(for='ranking') Europe ranking 
+        input#ranking(type='number', name='ranking', value= ranking) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['EuropeForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 

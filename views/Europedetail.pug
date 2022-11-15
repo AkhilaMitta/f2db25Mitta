@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let Europeid = toShow._id 
+  - let countries = toShow.countries 
+  - let state = toShow.state
+  - let ranking = toShow.ranking
+  div 
+    div.row 
+      div(class='EuropeAttr mr-3') Europe ID is: 
+      div #{Europeid} 
+    div.row 
+      div(class='EuropeAttr mr-3') Europe countries is: 
+      div #{countries} 
+    div.row 
+      div(class='EuropeAttr mr-3') Europe state is: 
+      div #{state} 
+    div.row 
+      div(class='EuropeAttr mr-3') Europe ranking is: 
+      div #{ranking} 
