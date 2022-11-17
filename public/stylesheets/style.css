@@ -6,7 +6,14 @@ body {
 a {
   color: #00B7FF;
 }
+
 .EuropeAttr {
   background-color: aquamarine;
   width: 120px;
-  }
+}
+
+.akhi {
+  text-align: center;
+  padding: 10px;
+  background-color: rgb(238, 255, 127);
+}
