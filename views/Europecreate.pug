@@ -2,9 +2,7 @@ extends layout
  
 block content 
   h1= title 
-  if (toShow == null) 
-    h2 No instance to update
-  else 
+  
     form(id='EuropeForm', action="/resource/Europes", method="POST", class='akhi') 
       div(class='akhi').form-group
           img(src='/images/Europe.jpg')

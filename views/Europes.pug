@@ -1,64 +1,63 @@
-extends layout
-block content
-  h1= title
-  -let items = results
-  div(class="container-fluid") 
-  div(class="row m-1") 
-    each item in items  
-      - let destination = `dispatch(\"/Europes/update?id=${item._id}\")` 
-      div(class="row-sm-2", class="m-1") Item #{item.countries}(#{item.state}) is #{item.ranking} 
-        button.btn( class="btn-primary ml-1", onclick= destination) Update 
-  script. 
-        function dispatch(path)
-          { 
-            window.location.href=path 
-          } 
- 
-  button.btn( class="btn-success ml-1", onclick= `click(\"/Europe/create\")` ) Create a new Item
+extends layout 
+block content 
+  h1=title 
+  -let items = results 
+  button.btn( class="btn-dark ml-1",id="create" onclick= `dispatch(\"/Europes/create")` ) Create
+  div(class="container-fluid")
+  div(class="row m-1")
+    each item in items
+      - let destination = `dispatch(\"/Europes/update?id=${item._id}\")`
+      div(class="row-sm-2", class="m-1") Item #{item.countries}(#{item.state}) is #{item.ranking}
+        button.btn( class="btn-primary ml-1", onclick= destination) Update
+
+  script.
+    function dispatch(path)
+      {
+        window.location.href=path
+      }
+  button.btn( class="btn-dark ml-1", onclick= `click(\"/Europes/create\")` ) Create a new Item
   table(class="table table-stripped table-bordered")
-    thead(style="background-color:lightblue;color:black") 
-      tr
-        td Item ID
-        td Item countries
-        td Item state
-        td Item ranking 
-        td Update
-        td Details
-        td Delete
-    tbody
+        thead(style="background-color:brown;color:white") 
+           tr
+               td Item ID
+               td Item countries
+               td Item state
+               td Item ranking
+               td Update
+               td Details
+               td Delete
+           tbody
+            
+           each item in items
+                tr
+                    td #{item._id}
+                    td #{item.countries}
+                    td #{item.state}
+                    td #{item.ranking}
+                    td 
+                      button.btn( class="btn-success ml-1", onclick= `dispatch(\"/Europes/update?id=${item._id}\")` ) Update
+                    td 
+                      button.btn( class="btn-warning ml-1", onclick= `dispatch(\"/Europes/detail?id=${item._id}\")` ) Details
+                    td 
+                      button.btn( class="btn-danger ml-1", onclick= `dispatch(\"/Europes/delete?id=${item._id}\")` ) Delete 
+                script. 
+                  function click(path){ 
+                    window.location.href=path 
+                  } 
 
-      each item in items
-        tr
-          td #{item._id}
-          td #{item.countries}
-          td #{item.state}
-          td #{item.ranking}
-          td 
-            button.btn( class="btn-success ml-1", onclick= `click(\"/Europe/update/?id=${item._id}\")` ) Update
-          td 
-            button.btn( class="btn-warning ml-1", onclick= `click(\"/Europe/detail/?id=${item._id}\")` ) Details
-          td 
-            button.btn( class="btn-danger ml-1", onclick= `click(\"/Europe/delete/?id=${item._id}\")` ) Delete 
-        script. 
-          function click(path){ 
-            window.location.href=path 
-          } 
-
-  console.log(results)
-  -let abc  =[{countries:"United Kingdom",state :"England",ranking:5},{countries:"Germany",state:"Hessen",ranking:10},{countries:"france",state:"Paris",ranking:15}]
+  - let num=[{countries:"united kingdom",state:"England",ranking:5},{countries:"Germany",state:"Hessen",ranking:10},{countries:"France",state:"Paris",ranking:15}]
   div(class="container-fluid")
   div(class="row")
-
-    each Europe,index in abc
+    each Europe,index in num 
       table(style='width:100%')
-        tr
-          div(class="col-sm-2" onclick=`buy(${index})`) #{Europe.countries}
-          div(class="col-sm-2" onclick=`buy(${index})`) #{Europe.state}
-          div(class="col-sm-2" onclick=`buy(${index})`) #{Europe.ranking}
+          tr 
+              div(class="col-sm-2" onclick=`buy(${index})`) #{Europe.countries}
+              div(class="col-sm-2" onclick=`buy(${index})`) #{Europe.state}
+              div(class="col-sm-2" onclick=`buy(${index})`) #{Europe.ranking}
 
     script.
 
       function buy(itemNo)
       {
-        alert(`Places to visit ${itemNo+1}`)
+        alert(`Your destination ${itemNo+1}`)
       }
